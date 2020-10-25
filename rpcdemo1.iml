@@ -10,18 +10,34 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/jar/netty-all-4.1.42.Final.jar!/" />
+          <root url="jar://D:/jar包/netty/netty-all-4.1.42.Final.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.ideaLibSources/netty-all-4.1.42.Final-sources.jar!/" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/jar/fastjson-1.2.62.jar!/" />
+          <root url="jar://D:/jar包/jackson/jackson-annotations-2.11.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/jar包/jackson/jackson-core-2.11.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/jar包/jackson/jackson-databind-2.11.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

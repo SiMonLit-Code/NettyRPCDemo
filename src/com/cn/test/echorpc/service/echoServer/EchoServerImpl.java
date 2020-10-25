@@ -1,5 +1,7 @@
-package com.cn.test.rpc.netty.server.echoServer;
+package com.cn.test.echorpc.service.echoServer;
 
+import com.cn.test.echorpc.service.handler.EchoServerHandler;
+import com.cn.test.echorpc.utils.StaticData;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -8,7 +10,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class EchoServerImpl implements IEchoServer{
     private final Integer port ;
-    private static Boolean isRunning = false;
+    private static Boolean running = false;
     private static Logger logger = Logger.getLogger("EchoServerImpl");
 
     public EchoServerImpl(Integer port) {
@@ -47,6 +48,7 @@ public class EchoServerImpl implements IEchoServer{
                     });
             //绑定服务器; sync等待服务器关闭
             ChannelFuture cf = serverBootstrap.bind().sync();
+            running = true;
             //关闭channel
             cf.channel().closeFuture().sync();
         } catch (InterruptedException e) {
@@ -54,27 +56,28 @@ public class EchoServerImpl implements IEchoServer{
         } finally {
             //关闭EventLoopGroup，释放所有资源
             group.shutdownGracefully();
+            running = false;
         }
 
     }
 
     @Override
     public void stop() {
-
+        running=false;
     }
 
     @Override
     public void register(Class serverInterface, Class impl) {
-
+        StaticData.serviceRegistry.put(serverInterface.getName(), impl);
     }
 
     @Override
     public boolean isRunning() {
-        return false;
+        return running;
     }
 
     @Override
     public int getPort() {
-        return 0;
+        return this.port;
     }
 }

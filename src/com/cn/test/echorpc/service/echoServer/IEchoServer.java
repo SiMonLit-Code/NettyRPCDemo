@@ -1,4 +1,4 @@
-package com.cn.test.rpc.netty.server.echoServer;
+package com.cn.test.echorpc.service.echoServer;
 
 /**
  * @author : czz
