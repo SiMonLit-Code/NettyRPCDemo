@@ -33,7 +33,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        logger.info("channelRead");
+        logger.info("service channelRead");
         ByteBuf byteBuf = (ByteBuf)msg;
         String resultStr = "";
         try{
@@ -41,7 +41,8 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
             ObjectMapper objectMapper = new ObjectMapper();
             RPCNetty entity = objectMapper.readValue(read, RPCNetty.class);
             Class clz = StaticData.serviceRegistry.get(entity.getClzName());
-            Method method = clz.getMethod(entity.getClzName(),entity.getParamTypes());
+            Method method = clz.getMethod(entity.getMethodName(),entity.getParamTypes());
+            //代理方法，需要被代理的对象和方法参数，
             Object resultObj = method.invoke(clz.newInstance(), entity.getArguments());
             resultStr = objectMapper.writeValueAsString(resultObj);
         }catch (Exception e){
@@ -56,7 +57,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channelReadComplete");
+        logger.info("service channelReadComplete");
         //冲刷所有的消息到远程节点，然后关闭通道。
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     }

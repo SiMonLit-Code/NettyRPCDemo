@@ -7,9 +7,9 @@ package com.cn.test.fib;
  * @description : 斐波那契数列处理
  */
 public class FibRequestHandle implements FibRequest{
-    private long a[];
+    private static final long[] a;
     static {
-        long a[] = new long[1024];
+        a = new long[1024];
         a[0] = 1;
         a[1] = 1;
         for (int i = 2; i < 1024; i++) {

@@ -14,12 +14,12 @@ import java.util.logging.Logger;
  * @version 1.0
  * @date 2020/10/25 11:06
  *
- * RPCFactory 代理实现类
+ * RPCProxyFactory 代理实现类
  * 传递网络连接需要的host以及port。
  * 将相关的对象，来封装实体对象传递到Netty处理类中，进行进一步的处理
  */
-public class RPCFactory {
-    private static Logger logger = Logger.getLogger("RPCFactory");
+public class RPCProxyFactory {
+    private static Logger logger = Logger.getLogger("RPCProxyFactory");
 
     public static <T> T getRemoteProxyObj(final Class<?> serviceInterface,
                                           final InetSocketAddress addr,
@@ -44,7 +44,6 @@ public class RPCFactory {
                 return null;
             }
         });
-
     }
 
 }

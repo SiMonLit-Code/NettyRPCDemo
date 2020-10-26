@@ -30,7 +30,7 @@ public class EchoServerImpl implements IEchoServer{
 
     @Override
     public void start() {
-        logger.info("start");
+        logger.info("service start。。。");
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
